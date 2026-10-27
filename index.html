@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Sales | Online Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body data-page="store">
+<header class="site-header">
+  <div class="nav">
+    <a class="logo" href="#shop"><span class="logo-mark">B</span>Black Sales</a>
+    <label class="search-wrap">
+      <span aria-hidden="true">⌕</span>
+      <input id="search" class="search" type="search" placeholder="Search products..." aria-label="Search products">
+    </label>
+    <nav aria-label="Main navigation">
+      <a href="#shop" data-view="shop">Shop</a>
+      <a href="#orders" data-view="orders">My orders</a>
+      <a href="#merchant" data-view="merchant" id="merchantLink" hidden>Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn cart-button" id="cartBtn" aria-label="Open shopping cart" aria-expanded="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 1.9-1.4L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+        Cart <span class="badge" id="cartCount">0</span>
+      </button>
+      <span class="user" id="userName"></span>
+      <button class="btn text-button" id="logout">Sign out</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="view" id="shop">
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">Thoughtfully picked for everyday</span>
+          <h1>Good things for<br><span>every day.</span></h1>
+          <p>Discover useful essentials and thoughtful finds, all in one easy place.</p>
+          <a class="btn light-button" href="#shop" data-scroll-products>Explore the collection <span aria-hidden="true">→</span></a>
+          <span class="hero-note"><span aria-hidden="true">✦</span> Free delivery on orders above ₹999</span>
+        </div>
+        <div class="hero-art">
+          <div class="hero-orbit orbit-one"></div>
+          <div class="hero-orbit orbit-two"></div>
+          <div class="hero-product">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85" alt="Wireless headphones from the Black Sales collection">
+          </div>
+          <span class="hero-sticker">THOUGHTFUL<br>PICKS</span>
+        </div>
+      </div>
+    </div>
+    <div class="trust-strip" aria-label="Shopping benefits">
+      <div><span aria-hidden="true">✓</span><strong>Curated essentials</strong><small>Useful finds, picked with care</small></div>
+      <div><span aria-hidden="true">↗</span><strong>Easy checkout</strong><small>A smooth and simple order flow</small></div>
+      <div><span aria-hidden="true">◇</span><strong>Order tracking</strong><small>Stay up to date on your delivery</small></div>
+    </div>
+    <div class="container">
+      <div class="section-heading" id="recoWrap">
+        <div><span class="eyebrow">Picked for you</span><h2>A few lovely finds</h2></div>
+        <p>Little favorites to get you started.</p>
+        <div class="grid" id="reco"></div>
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-title"><span class="eyebrow">The good stuff</span><h2 id="products">Shop all</h2></div>
+        <div class="pills" id="cats"></div>
+        <label class="sort-wrap"><span class="sr-only">Sort products</span><select id="sort" aria-label="Sort products">
+          <option value="">Featured</option><option value="lo">Price: low to high</option>
+          <option value="hi">Price: high to low</option><option value="rate">Top rated</option>
+        </select></label>
+      </div>
+      <div class="grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <section class="view container" id="orders" hidden>
+    <div class="page-heading"><span class="eyebrow">Your purchases</span><h1>My orders</h1><p>All your purchases and deliveries, in one place.</p></div>
+    <div id="orderList"></div>
+  </section>
+
+  <section class="view container" id="merchant" hidden>
+    <div class="page-heading"><span class="eyebrow">For your business</span><h1>Merchant dashboard</h1><p>Keep your shop running smoothly.</p></div>
+    <div class="stats" id="stats"></div>
+    <div class="subsection-heading"><div><span class="eyebrow">Grow your catalog</span><h2>Add a product</h2></div></div>
+    <form id="addForm" class="row-form">
+      <input name="name" placeholder="Product name" aria-label="Product name" required>
+      <select name="cat" aria-label="Product category"><option>Electronics</option><option>Fashion</option><option>Home</option><option>Sports</option></select>
+      <input name="image" type="url" placeholder="Image URL (optional)" aria-label="Product image URL">
+      <input name="price" type="number" min="1" placeholder="Price (₹)" aria-label="Price in rupees" required>
+      <input name="stock" type="number" min="0" placeholder="Stock" aria-label="Stock quantity" required>
+      <button class="btn primary">Add product <span aria-hidden="true">+</span></button>
+    </form>
+    <div class="subsection-heading"><div><span class="eyebrow">Your catalog</span><h2>Inventory</h2></div></div>
+    <div class="table-wrap"><table id="inventory"></table></div>
+    <div class="subsection-heading"><div><span class="eyebrow">Keep things moving</span><h2>Customer orders</h2></div></div>
+    <div class="table-wrap"><table id="allOrders"></table></div>
+  </section>
+</main>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Shopping cart">
+  <div class="drawer-head"><div><span class="eyebrow">Your good finds</span><h2>Your cart</h2></div><button class="btn icon-button" id="closeCart" aria-label="Close cart">×</button></div>
+  <div id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="total"><span>Subtotal</span><strong id="cartTotal">₹0</strong></div>
+    <button class="btn primary block" id="checkoutBtn">Continue to checkout <span aria-hidden="true">→</span></button>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<dialog id="checkout">
+  <form id="checkoutForm" method="dialog">
+    <span class="eyebrow">Almost yours</span><h2>Checkout</h2>
+    <label>Full name<input name="name" required></label>
+    <label>Delivery address<textarea name="address" rows="2" required></textarea></label>
+    <label>Phone<input name="phone" type="tel" pattern="[0-9]{10}" placeholder="10-digit number" required></label>
+    <label>Payment method
+      <select name="pay" id="pay"><option value="card">Credit / debit card</option><option value="upi">UPI</option><option value="cod">Cash on delivery</option></select>
+    </label>
+    <label id="cardRow">Card number<input name="card" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456"></label>
+    <label id="upiRow" hidden>UPI ID<input name="upi" placeholder="name@bank"></label>
+    <p class="error" id="coErr" role="alert"></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn ghost" id="cancelCo">Cancel</button>
+      <button class="btn primary" type="submit" id="payBtn">Pay now</button>
+    </div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+<script src="web.js"></script>
+</body>
+</html>

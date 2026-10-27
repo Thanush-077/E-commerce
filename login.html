@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in | Black Sales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body data-page="login" class="auth-body">
+<main class="auth">
+  <section class="auth-side">
+    <a class="logo auth-logo" href="login.html"><span class="logo-mark">B</span>Black Sales</a>
+    <div class="auth-story">
+      <span class="eyebrow">A better way to shop</span>
+      <h1>Good finds.<br><span>Good feelings.</span></h1>
+      <p>Thoughtful picks for everyday life, delivered right to your door.</p>
+      <div class="auth-perks">
+        <span><span class="perk-icon">✓</span> Easy,secure checkout</span>
+        <span><span class="perk-icon">✓</span> Track every order</span>
+        <span><span class="perk-icon">✓</span> A little joy in every delivery</span>
+      </div>
+    </div>
+    <p class="auth-footer">Simple shopping, made better.</p>
+  </section>
+  <section class="auth-panel">
+    <div class="auth-card">
+      <div class="auth-heading">
+        <span class="eyebrow">Welcome to Black Sales</span>
+        <h2>Your next favorite thing awaits.</h2>
+        <p>Sign in or create an account to get started.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Account access">
+        <button class="tab active" data-tab="login" role="tab" aria-selected="true">Sign in</button>
+        <button class="tab" data-tab="register" role="tab" aria-selected="false">Create account</button>
+      </div>
+      <form id="loginForm" novalidate>
+        <label>Email address<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <label>Password<input type="password" name="password" autocomplete="current-password" placeholder="Enter your password" required></label>
+        <p class="error" id="loginErr" role="alert"></p>
+        <button class="btn primary block" type="submit">Sign in <span aria-hidden="true">→</span></button>
+      </form>
+      <form id="registerForm" novalidate hidden>
+        <label>Full name<input name="name" autocomplete="name" placeholder="Your name" required></label>
+        <label>Email address<input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <label>Password<input type="password" name="password" autocomplete="new-password" placeholder="At least 6 characters" required></label>
+        <label>Account type
+          <select name="role"><option value="customer">Customer</option><option value="merchant">Merchant</option></select>
+        </label>
+        <p class="error" id="regErr" role="alert"></p>
+        <button class="btn primary block" type="submit">Create account <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="auth-legal">By continuing, you agree to shop kindly and enjoy the little things.</p>
+    </div>
+  </section>
+</main>
+<script src="web.js"></script>
+</body>
+</html>
